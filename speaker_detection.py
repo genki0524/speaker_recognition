@@ -63,7 +63,7 @@ model = Net1D().to(device)
 loss_fn = nn.CrossEntropyLoss()
 optimizer = optim.Adam(params=model.parameters(),lr=1e-3)
 
-epochs = 5
+epochs = 20
 for t in range(epochs):
     print(f"Epoch {t+1}\\n-------------------------------")
     train_fn(dataloader=train_loader,model=model,loss_fn=loss_fn,optimizer=optimizer,device=device)
