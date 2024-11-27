@@ -61,7 +61,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 model = Net1D().to(device)
 
 loss_fn = nn.CrossEntropyLoss()
-optimizer = optim.Adam(params=model.parameters(),lr=1e-3)
+optimizer = optim.Adam(params=model.parameters(),lr=1e-4)
 
 epochs = 20
 for t in range(epochs):
