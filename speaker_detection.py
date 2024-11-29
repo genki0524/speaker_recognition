@@ -73,7 +73,7 @@ print("Done!")
 
 torch.save(model.state_dict(),"./speaker_recognition_model.pth")
 
-dummy_input = torch.zeros((1,16000)).to(device)
+dummy_input = torch.zeros((1,1,16000)).to(device)
 
 onnx.export(model,dummy_input,"./speaker_recognition_model.onnx")
 
