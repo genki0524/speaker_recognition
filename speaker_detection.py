@@ -11,6 +11,7 @@ import librosa.display
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import torch.onnx as onnx
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -69,6 +70,16 @@ for t in range(epochs):
     train_fn(dataloader=train_loader,model=model,loss_fn=loss_fn,optimizer=optimizer,device=device)
     test_fn(dataloader=test_loader,model=model,loss_fn=loss_fn,device=device)
 print("Done!")
+
+torch.save(model.state_dict(),"./speaker_recognition_model.pth")
+
+dummy_input = torch.zeros((1,16000)).to(device)
+
+onnx.export(model,dummy_input,"./speaker_recognition_model.onnx")
+
+
+
+
 
 
 

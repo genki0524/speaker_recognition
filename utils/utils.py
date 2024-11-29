@@ -5,6 +5,8 @@ def train_fn(dataloader,model,loss_fn,optimizer,device):
     model.train()
     for batch,(x,y) in enumerate(dataloader):
         x,y = x.to(device),y.to(device)
+        if batch == 0:
+            print(x.shape)
         #lossの計算
         pred = model(x)
         loss = loss_fn(pred,y)

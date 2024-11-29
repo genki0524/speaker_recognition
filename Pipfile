@@ -10,6 +10,7 @@ librosa = "*"
 torch = "*"
 scikit-learn = "*"
 numpy = "<2"
+onnx = "*"
 
 [dev-packages]
 
