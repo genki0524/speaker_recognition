@@ -20,32 +20,38 @@ from dataset.audio_dataset import AudioDatasets
 from model.model import Net1D
 from utils.utils import train_fn,test_fn
 
-speaker_label = {'Jens_Stoltenberg' : 0,
-                 'Benjamin_Netanyau': 1,                 
-                 'Julia_Gillard' : 2,
-                 'Magaret_Tarcher' : 3,
-                 'Nelson_Mandela' : 4,
+speaker_label = {'fujitou' : 0,
+                 'tsuchiya': 1,                 
+                 'uemura' : 2,
                 }
-sr = 16000
+sr = 48000
 
 def read_file_label(path_name,speaker_label):
     file_label_list = []
     file_list = []
     label_list = []
-
+    
     for label in speaker_label.keys():
-        n_file = len(glob.glob(os.path.join(path_name,list(speaker_label.keys())[0])+"/*.wav"))
+        folder_path = Path(os.path.join(path_name,label))
+        # n_file = len(glob.glob(os.path.join(path_name,list(speaker_label.keys())[0])+"/*.wav"))
         
-        for i in range(n_file):
-            file_label_list.append((os.path.join(path_name,label,f"{i}.wav"),speaker_label[label]))
+        # for i in range(n_file):
+            # file_label_list.append((os.path.join(path_name,label,f"{i}.wav"),speaker_label[label]))
         
-            file_list.append(os.path.join(path_name,label,f"{i}.wav"))
+            # file_list.append(os.path.join(path_name,label,f"{i}.wav"))
+
+            # label_list.append(speaker_label[label])
+        for file in folder_path.iterdir():
+            file_label_list.append((os.path.join(path_name,label,file.name),speaker_label[label]))
+        
+            file_list.append(os.path.join(path_name,label,file.name))
 
             label_list.append(speaker_label[label])
 
+
     return file_label_list,file_list,label_list
 
-file_label_list,file_list,label_list = read_file_label("16000_pcm_speeches",speaker_label=speaker_label)
+file_label_list,file_list,label_list = read_file_label("seiyu_dataset",speaker_label=speaker_label)
 
 X_train,X_valid,y_train,y_valid = train_test_split(file_list,label_list,test_size=0.2,random_state=31)
 
@@ -56,6 +62,10 @@ batch_size = 32
 
 train_loader = torch.utils.data.DataLoader(AudioDatasets(train,sr=sr),batch_size=batch_size)
 test_loader = torch.utils.data.DataLoader(AudioDatasets(valid,sr=sr),batch_size=batch_size)
+
+for data,label in train_loader:
+    print(data)
+    break
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
