@@ -28,7 +28,7 @@ class Net1D(nn.Module):
                                    nn.MaxPool1d(kernel_size=9, stride=2),
                                   )
  
-        self.dense = nn.Sequential(nn.Linear(128*29988, 512),
+        self.dense = nn.Sequential(nn.Linear(128*14988, 512),
                                    nn.ReLU(inplace=True),
                                    nn.Dropout(0.5),
                                    nn.Linear(512,128),
@@ -42,6 +42,7 @@ class Net1D(nn.Module):
         x = self.conv2(x)
         x = self.conv3(x)
         x = self.conv4(x)
+        print(x.shape)
         x = x.view(x.size(0),-1)
         x = self.dense(x)
  
