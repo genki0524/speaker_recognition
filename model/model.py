@@ -28,13 +28,13 @@ class Net1D(nn.Module):
                                    nn.MaxPool1d(kernel_size=9, stride=2),
                                   )
  
-        self.dense = nn.Sequential(nn.Linear(126464, 512),
+        self.dense = nn.Sequential(nn.Linear(128*29988, 512),
                                    nn.ReLU(inplace=True),
                                    nn.Dropout(0.5),
                                    nn.Linear(512,128),
                                    nn.ReLU(inplace=True),
                                    nn.Dropout(0.5),
-                                   nn.Linear(128, 5),
+                                   nn.Linear(128, 3),
                                   )
  
     def forward(self,x):
