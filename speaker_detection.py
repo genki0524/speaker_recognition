@@ -66,7 +66,7 @@ X_train,X_valid,y_train,y_valid = train_test_split(file_list,label_list,test_siz
 train = [(X_train[idx],y_train[idx]) for idx in range(len(X_train))]
 valid = [(X_valid[idx],y_valid[idx]) for idx in range(len(X_valid))]
 
-batch_size = 4
+batch_size = 32
 
 train_loader = torch.utils.data.DataLoader(AudioDatasets(train,sr=sr),batch_size=batch_size)
 test_loader = torch.utils.data.DataLoader(AudioDatasets(valid,sr=sr),batch_size=batch_size)
