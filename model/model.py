@@ -29,13 +29,13 @@ class Net1D(nn.Module):
                                   )
                                    
  
-        self.dense = nn.Sequential(nn.Linear(128*8988, 512),
+        self.dense = nn.Sequential(nn.Linear(128*988, 512),
                                    nn.ReLU(inplace=True),
                                    nn.Dropout(0.5),
                                    nn.Linear(512,128),
                                    nn.ReLU(inplace=True),
                                    nn.Dropout(0.5),
-                                   nn.Linear(128, 3),
+                                   nn.Linear(128, 5),
                                   )
  
     def forward(self,x):

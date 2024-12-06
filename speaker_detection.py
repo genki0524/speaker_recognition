@@ -20,11 +20,19 @@ from dataset.audio_dataset import AudioDatasets
 from model.model import Net1D
 from utils.utils import train_fn,test_fn
 
-speaker_label = {'fujitou' : 0,
-                 'tsuchiya': 1,                 
-                 'uemura' : 2,
+# speaker_label = {'fujitou' : 0,
+#                  'tsuchiya': 1,                 
+#                  'uemura' : 2,
+#                 }
+
+speaker_label = {'Jens_Stoltenberg' : 0,
+                 'Benjamin_Netanyau': 1,                 
+                 'Julia_Gillard' : 2,
+                 'Magaret_Tarcher' : 3,
+                 'Nelson_Mandela' : 4,
                 }
-sr = 48000
+
+sr = 16000
 
 def read_file_label(path_name,speaker_label):
     file_label_list = []
@@ -51,7 +59,7 @@ def read_file_label(path_name,speaker_label):
 
     return file_label_list,file_list,label_list
 
-file_label_list,file_list,label_list = read_file_label("seiyu_dataset",speaker_label=speaker_label)
+file_label_list,file_list,label_list = read_file_label("16000_pcm_speeches",speaker_label=speaker_label)
 
 X_train,X_valid,y_train,y_valid = train_test_split(file_list,label_list,test_size=0.2,random_state=31)
 
