@@ -29,7 +29,7 @@ class Net1D(nn.Module):
                                   )
                                    
  
-        self.dense = nn.Sequential(nn.Linear(128*2988, 512),
+        self.dense = nn.Sequential(nn.Linear(128*8988, 512),
                                    nn.ReLU(inplace=True),
                                    nn.Dropout(0.5),
                                    nn.Linear(512,128),
@@ -43,6 +43,7 @@ class Net1D(nn.Module):
         x = self.conv2(x)
         x = self.conv3(x)
         x = self.conv4(x)
+        print(x.size())
         x = x.view(x.size(0),-1)
         x = self.dense(x)
  
