@@ -21,14 +21,14 @@ class Net1D(nn.Module):
                                    nn.ReLU(inplace=True),
                                    nn.MaxPool1d(kernel_size=7, stride=2),
                                   )
-         
-        self.conv4 = nn.Sequential(nn.Conv1d(64, 128, kernel_size=9, stride=1),
+        
+        self.conv4 = nn.Sequential(nn.Conv1d(64,128,kernel_size=9,stride=1),
                                    nn.BatchNorm1d(128),
                                    nn.ReLU(inplace=True),
-                                   nn.MaxPool1d(kernel_size=9, stride=2),
-                                  )
+                                   nn.MaxPool1d(kernel_size=9,stride=2),)
+                                   
  
-        self.dense = nn.Sequential(nn.Linear(128*14988, 512),
+        self.dense = nn.Sequential(nn.Linear(128*2988, 512),
                                    nn.ReLU(inplace=True),
                                    nn.Dropout(0.5),
                                    nn.Linear(512,128),
