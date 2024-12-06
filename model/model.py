@@ -43,7 +43,6 @@ class Net1D(nn.Module):
         x = self.conv2(x)
         x = self.conv3(x)
         x = self.conv4(x)
-        print(x.size())
         x = x.view(x.size(0),-1)
         x = self.dense(x)
  
